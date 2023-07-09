@@ -18,13 +18,14 @@ const Write = () => {
     };
     if (file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
       data.append("file", file);
-      newPost.photo = filename;
       try {
-        await axios.post("/api/upload", data);
-      } catch (error) {}
+        const res = await axios.post("/api/upload", data);
+        newPost.photo = res.data.secure_url;
+        console.log(res.data.secure_url)
+      } catch (error) {
+        console.log(error)
+      }
     }
     try {
       const res = await axios.post("/api/posts", newPost);

@@ -13,7 +13,6 @@ const Settings = () => {
   const [success, setSuccess]= useState(false)
 
   const { user, dispatch } = useContext(Context);
-  const PF = "http://localhost:5000/images/"
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch({type: "UPDATE_START"})
@@ -27,12 +26,10 @@ const Settings = () => {
     }
     if (file) {
       const data = new FormData();
-      const filename = Date.now() + file.name;
-      data.append("name", filename);
       data.append("file", file);
-      updatedUser.profilePic = filename;
       try {
-        await axios.post("/api/upload", data);
+        const res= await axios.post("/api/upload", data);
+        updatedUser.profilePic= res.data.secure_url;
       } catch (error) {console.log(error)}
     }
     try {
@@ -54,7 +51,7 @@ const Settings = () => {
         <form className="settingsForm" onSubmit={handleSubmit}>
           <label>Profile Picture</label>
           <div className="settingsPP">
-            <img src={file? URL.createObjectURL(file) : PF+user.profilePic} alt="" />
+            <img src={file? URL.createObjectURL(file) : user.profilePic} alt="" />
             <label htmlFor="fileInput">
               <FaCamera />
             </label>

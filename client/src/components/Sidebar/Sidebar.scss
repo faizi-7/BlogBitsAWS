@@ -26,11 +26,12 @@
             color: #050401;
         }
         img {
-            height: 350px;
+            height: 250px;
+            width: 60%;
             object-fit: cover;
             border-radius: 6px;
             @media screen and (max-width: 1200px) {
-                height: 250px;
+                height: 150px;
             }
         }
         p {

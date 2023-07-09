@@ -10,7 +10,6 @@ const SinglePost = () => {
   const path = location.pathname.split("/")[2];
   const [post, setPost] = useState({});
   const { user } = useContext(Context);
-  const PF = "http://localhost:5000/images/";
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [updateMode, setUpdateMode] = useState(false);
@@ -45,7 +44,7 @@ const SinglePost = () => {
   return (
     <div className="singlePost">
       <div className="singlePostWrapper">
-        {post.photo && <img className="postImg" src={PF + post.photo} />}
+        {post.photo && <img className="postImg" src={post.photo} />}
         {updateMode ? (
           <input
             type="text"

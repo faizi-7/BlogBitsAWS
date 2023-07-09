@@ -3,10 +3,9 @@ import "./Post.scss";
 import { Link} from 'react-router-dom'
 
 const Post = ({ post }) => {
-  const PF = "http://localhost:5000/images/"
   return (
     <div className="post">
-      {post.photo && <img className="postImg" src={PF + post.photo} />}
+      {post.photo && <img className="postImg" src={post.photo} />}
       <div className="postInfo">
         <div className="postCats">
           {post.categories.map((category) => (

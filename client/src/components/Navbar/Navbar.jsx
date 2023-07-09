@@ -9,7 +9,6 @@ const Navbar = () => {
   const logoutHandler = () => {
     dispatch({ type: "LOGOUT" });
   };
-  const PF = "http://localhost:5000/images/";
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -53,7 +52,7 @@ const Navbar = () => {
         {user ? (
           <div className="navUser">
             <Link to="/settings" className="link">
-              <img src={PF + user.profilePic} alt="profile" />
+              <img src={user.profilePic} alt="profile" />
             </Link>
             <span>Hi {user.username.split(" ")[0]}</span>
           </div>
