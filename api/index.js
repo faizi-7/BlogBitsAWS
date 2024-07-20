@@ -55,4 +55,4 @@ app.use("/api/categories", categoryRoute);
   });
 // }
 
-app.listen("5000", () => console.log("Backend is Running"));
+app.listen("3000", () => console.log("Backend is Running"));
