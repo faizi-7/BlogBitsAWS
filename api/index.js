@@ -16,7 +16,8 @@ app.use(express.json());
 app.use(cors());
 
 mongoose
-  .connect(process.env.MONGO_URL)
+  // .connect(process.env.MONGO_URL)
+  .connect('mongodb://localhost:27017')
   .then(console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
@@ -42,16 +43,16 @@ app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/categories", categoryRoute);
 
-if (process.env.NODE_ENV === "PRODUCTION") {
-  // set static folder
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  app.get("*", (req, res) =>
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"))
-  );
-} else {
+// if (process.env.NODE_ENV === "PRODUCTION") {
+//   // set static folder
+//   app.use(express.static(path.join(__dirname, '../client/dist')));
+//   app.get("*", (req, res) =>
+//     res.sendFile(path.join(__dirname, "../client/dist/index.html"))
+//   );
+// } else {
   app.get("/", (req, res) => {
     res.send("API is running !");
   });
-}
+// }
 
 app.listen("5000", () => console.log("Backend is Running"));

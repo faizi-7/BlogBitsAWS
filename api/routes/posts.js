@@ -8,7 +8,7 @@ router.post("/", async (req, res) => {
     const savedPost = await newPost.save();
     res.status(200).json(savedPost);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err?.message);
   }
 });
 
@@ -56,7 +56,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//GET
+//READ
 router.get("/:id", async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -66,7 +66,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//GET ALL POSTS
+//READ ALL POSTS
 router.get("/", async (req, res) => {
   const username = req.query.user;
   const catName = req.query.cat;
